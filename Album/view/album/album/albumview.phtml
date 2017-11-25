@@ -1,0 +1,33 @@
+<?php
+// module/Album/view/album/album/albumview.phtml:
+
+$title = 'Album View';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('album', array('action'=>'addalbum'));?>">Add new album</a>
+</p>
+<p>
+    <a href="<?php echo $this->url('album', array('action'=>'uploadphoto', 'id' => $this->album_id));?>">Upload image</a>
+</p>
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Preview</th>
+
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($photos as $photo) : ?>
+<tr>
+    <td><a href="<?php echo $this->url('album', array('action'=>'photoview', 'id' => $photo->id));?>"><?php echo $this->escapeHtml($photo->title);?></a></td>
+    <td><?php echo $this->escapeHtml($photo->address);?></td>
+    <td><a href="<?php echo $this->url('album', array('action'=>'photoview', 'id' => $photo->id));?>"><img src="<?php echo ROOT_URL . IMG_PATH_THUMBS . $photo->thumb;?>"></a></td>
+    <td>
+        <a href="<?php echo $this->url('album',
+            array('action'=>'deletephoto', 'id' => $photo->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

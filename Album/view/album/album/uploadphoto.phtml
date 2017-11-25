@@ -1,0 +1,46 @@
+<?php
+// module/Album/view/album/album/upload_image.phtml:
+
+$title = 'Upload photo';
+$this->headTitle($title);
+
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'album',
+    array(
+        'action' => 'uploadphoto',
+        'id'     => $this->album_id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+//echo $this->formHidden($form->get('id'));
+?>
+<?php if ($this->dropdown) : ?>
+
+	<p><?php echo $this->formRow($form->get('album_id')); ?></p>
+
+<?php endif; ?>
+
+<p>
+	<?php echo $this->formRow($form->get('title')); ?>
+</p>
+<p>
+	<?php echo $this->formRow($form->get('address')); ?>
+</p>
+<p>
+	<?php echo $this->formRow($form->get('image')); ?>
+</p>
+<p>
+	<?php echo $this->formSubmit($form->get('submit')); ?>
+</p>
+
+<?php echo $this->form()->closeTag(); ?>

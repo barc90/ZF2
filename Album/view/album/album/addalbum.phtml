@@ -1,0 +1,37 @@
+<?php
+// module/Album/view/album/album/add.phtml:
+
+$title = 'Add new album';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+	$form = $this->form;
+	$form->setAttribute('action', $this->url('album', array('action' => 'addalbum')));
+	$form->prepare();
+?>
+<?php
+	echo $this->form()->openTag($form);
+	echo $this->formHidden($form->get('id'));
+?>
+<p>
+	<?php echo $this->formRow($form->get('title')); ?>
+</p>
+<p>
+	<?php echo $this->formRow($form->get('description')); ?>
+</p>
+<p>
+	<?php echo $this->formRow($form->get('name_photographer')); ?>
+</p>
+<p>
+	<?php echo $this->formRow($form->get('email')); ?>
+</p>
+<p>
+	<?php echo $this->formRow($form->get('phone')); ?>
+</p>
+<p>
+	<?php echo $this->formSubmit($form->get('submit')); ?>
+</p>
+<?php
+echo $this->form()->closeTag();
+?>

@@ -1,0 +1,24 @@
+<?php
+// module/Album/view/album/album/photoview.phtml:
+
+$title = 'Photo View:';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<img src="<?php echo ROOT_URL . IMG_PATH . $photo->image;?>">
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Uploaded</th>
+    <th>&nbsp;</th>
+</tr>
+
+<tr>
+    <td><?php echo $this->escapeHtml($photo->title);?></td>
+    <td><?php echo $this->escapeHtml($photo->address);?></td>
+    <td><?php echo $this->escapeHtml($photo->created);?></td>
+</tr>
+
+</table>

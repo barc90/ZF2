@@ -1,0 +1,48 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Albums list';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('album', array('action'=>'addalbum'));?>">Add new album</a>
+</p>
+<p>
+    <a href="<?php echo $this->url('album', array('action'=>'uploadphoto'));?>">Upload image</a>
+</p>
+<table class="table">
+<tr>
+    <th>Photo</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Photographer name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Count photos</th>
+    <th>Last photo uploaded</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($albums as $album) : ?>
+<tr>
+    <?php if (isset($album['thumb'])): ?>
+        <td><a href="<?php echo $this->url('album', array('action'=>'albumview', 'id' => $album['id']));?>"><img src="<?php echo ROOT_URL . IMG_PATH_THUMBS . $album['thumb'];?>"></a></td>
+    <?php else: ?>
+        <td>Not photos</td>
+    <?php endif; ?>    
+    <td><a href="<?php echo $this->url('album', array('action'=>'albumview', 'id' => $album['id']));?>"><?php echo $this->escapeHtml($album['title']);?></a></td>
+    <td><?php echo $this->escapeHtml($album['description']);?></td>
+    <td><?php echo $this->escapeHtml($album['name_photographer']);?></td>
+    <td><?php echo $this->escapeHtml($album['email']);?></td>
+    <td><?php echo $this->escapeHtml($album['phone']);?></td>
+    <td><?php echo $this->escapeHtml($album['count']);?></td>
+    <td><?php echo $this->escapeHtml($album['last_image_date']);?></td>
+    <td>
+        <a href="<?php echo $this->url('album',
+            array('action'=>'editalbum', 'id' => $album['id']));?>">Edit</a>
+        <a href="<?php echo $this->url('album',
+            array('action'=>'deletealbum', 'id' => $album['id']));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
